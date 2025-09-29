@@ -101,7 +101,12 @@ const handleSinoCastal = async (data, socket) => {
   const packetHeader = hexArray.slice(25, 27).join("");
   const imei = hexArray.slice(5, 25).join("");
   const logMessage = `TCP: IMEI=${imei}, Header=${packetHeader}, Raw=${spacedHexString}`;
-
+  if(packetHeader=='1001'){
+     let response=`40402900043231384C314542323032333030303536310000009001FFFFFFFF0000F185DA689F2B0D0A`
+    const bufferToSend = Buffer.from(response, 'hex');
+    console.log('sockets', bufferToSend);
+    socket.write(bufferToSend);
+  }
   console.log(logMessage);
 
   // Broadcast to UI via WebSocket
