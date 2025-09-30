@@ -120,7 +120,7 @@ const tcpServer = net.createServer((socket) => {
   socket.on("data", (data) => {
     try {
       handleSinoCastal(data, socket);
-      socket.write("ACK: " + data.toString());
+    //   socket.write("ACK: " + data.toString());
     } catch (err) {
       console.error("TCP handling error:", err.message);
       io.emit("tcp-log", `TCP handling error: ${err.message}`, "error");
